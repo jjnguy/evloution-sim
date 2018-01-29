@@ -35,6 +35,7 @@ class App: JFrame() {
           val g2 = g as Graphics2D
           val genWidth = width / sim.creatureSnapshots.size
           var currX = 0
+          // TODO("Figure out how to scale when generations get higher than the width.")
           sim.creatureSnapshots.forEach { generation ->
             var currY = 0
             generation.species.toSortedMap().forEach {
@@ -69,7 +70,7 @@ class App: JFrame() {
         addActionListener {
           sim.runGeneration()
           simDisplay.clear()
-          sim.creatureSnapshots.last().creatures.sortedByDescending { it.result() }.take(20).forEach {
+          sim.creatureSnapshots.last().creatures.sortedByDescending { it.result() }.take(5).forEach {
             simDisplay.addElement(it)
           }
           this@App.repaint()
@@ -80,7 +81,7 @@ class App: JFrame() {
         addActionListener {
           (1..100).forEach { sim.runGeneration() }
           simDisplay.clear()
-          sim.creatureSnapshots.last().creatures.sortedByDescending { it.result() }.take(20).forEach {
+          sim.creatureSnapshots.last().creatures.sortedByDescending { it.result() }.take(5).forEach {
             simDisplay.addElement(it)
           }
           this@App.repaint()

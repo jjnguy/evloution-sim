@@ -8,11 +8,11 @@ class RandomCreature {
 
   val rand = Random()
 
-  val startMaxFeatures = 5
-  val maxFeatures = 9
+  val startMaxFeatures = 1
+  val maxFeatures = 3
 
   fun generateCreature(): Counter {
-    val featureCount = rand.nextInt(5) + 1L
+    val featureCount = rand.nextInt(startMaxFeatures) + 1L
     val features = (0..featureCount).map {
       randomFeature()
     }

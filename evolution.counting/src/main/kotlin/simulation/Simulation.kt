@@ -27,16 +27,11 @@ class Simulation {
 
     val sorted = creatureTrackers.sortedByDescending { it.result() }
 
-    println("Average result: ${sorted.map { it.result() }.average()}")
-
     val survivors = sorted.take(currentCreatures.size / 2)
 
-    println("Top 5:")
-    survivors.take(5).map { "${it.result()}: " + it.creature.species() }.forEach { println(it) }
+    val newCreatures1 = survivors.map { creaturRandomizer.mutateCreature(it.creature) }
 
-    val newCreatures = survivors.map { creaturRandomizer.mutateCreature(it.creature) }
-
-    currentCreatures = survivors.map { it.creature }.union(newCreatures).toList()
+    currentCreatures = survivors.map { it.creature }.union(newCreatures1).toList()
     genCount++
 
     genListeners.forEach { it.actionPerformed(null) }

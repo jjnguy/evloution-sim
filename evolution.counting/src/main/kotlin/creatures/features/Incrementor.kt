@@ -4,7 +4,7 @@ import java.util.*
 
 class Incrementor(val amnt: Long): Feature {
 
-  val maxInc = 10L
+  val maxInc = 100L
 
   override fun act(number: Long): Long = number + amnt
 
